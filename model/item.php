@@ -1,6 +1,6 @@
 <?php
 
-class Item {
+class Item implements JsonSerializable {
 
     private $iditem;
     private $name;
@@ -139,4 +139,16 @@ class Item {
     }
 
 
+    /**
+     * (PHP 5 &gt;= 5.4.0)<br/>
+     * Specify data which should be serialized to JSON
+     * @link http://php.net/manual/en/jsonserializable.jsonserialize.php
+     * @return mixed data which can be serialized by <b>json_encode</b>,
+     * which is a value of any type other than a resource.
+     */
+    public function jsonSerialize()
+    {
+        // TODO: Implement jsonSerialize() method.
+        return (object) get_object_vars($this);
+    }
 }
