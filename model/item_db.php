@@ -57,7 +57,7 @@ class ItemDB
         foreach($result as $row) {
             $items [] = new Item(
                 $row['iditem'],
-                $row['name'],
+                //$row['name'],
                 $row['description'],
                 $row['location'],
                 $row['datefound'],

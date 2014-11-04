@@ -1,6 +1,29 @@
 <?php
 require_once('Header.php');
 ?>
+
+<script src="assets/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    var filterResult = function (inputName) {
+        console.log('in filter');
+        var inputValue = $('[name='+inputName+']').filter('input').val();
+        console.log("api/item.php?" + inputName + "=" + inputValue);
+        $.getJSON("api/item.php?" + inputName + "=" + inputValue,
+            function (Data) {
+                console.log('test');
+                $("#info2").empty();
+                $.each(Data, function (key, val) {
+                    $('<tr class="info">' + '<td>' +
+                        val.iditem + '</td>' +
+                        '<td>' + val.description + '</td>' +
+                        '<td>' + val.datefound + '</td>' + '</tr>'
+                    ).appendTo("#info2");
+                });
+
+            });
+    }
+</script>
+
 <div id="about">
     <div class="overlay">
         <div class="container">
@@ -56,7 +79,7 @@ require_once('Header.php');
                             <div class="col-lg-12 col-md-12 col-sm-12">
                                 <div class="form-group">
                                     <input type="text" name="description" class="form-control" required="required"
-                                           placeholder="Item Description">
+                                           placeholder="Item Description" onkeyup="filterResult(this.name)">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="location" class="form-control" required="required" placeholder="Location">
