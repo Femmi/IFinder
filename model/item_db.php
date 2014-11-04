@@ -15,7 +15,7 @@ class ItemDB
         foreach ($result as $row) {
             $item = new Item(
                 $row['iditem'],
-                $row['name'],
+                //$row['name'],
                 $row['description'],
                 $row['location'],
                 $row['datefound'],
@@ -38,8 +38,8 @@ class ItemDB
         $finderid = $item->getFinderid();
         $ownerid = $item->getOwnerid();
 
-        $query = "INSERT INTO item(name, description, location, datefound, finderid, ownerid)
-                    VALUES('$name', '$description', '$location', '$datefound', null, null);";
+        $query = "INSERT INTO item(description, location, datefound, finderid, ownerid)
+                    VALUES('$description', '$location', '$datefound', '$finderid', null);";
 
         $row_count = $db->exec($query);
         echo $query;

@@ -11,14 +11,14 @@ class Item {
     private $ownerid;
 
     public function __construct($iditem,
-                                $name,
+                                //$name,
                                 $description,
                                 $location,
                                 $datefound,
                                 $finderid,
                                 $ownerid) {
         $this->iditem = $iditem;
-        $this->name = $name;
+        //$this->name = $name;
         $this->description = $description;
         $this->location = $location;
         $this->datefound = $datefound;
