@@ -67,4 +67,50 @@ class ItemDB
         }
         return $items;
     }
+
+    public static function getItemByLocation($location)
+    {
+        $db = Database::getDB();
+        $query = "SELECT * FROM item where location like '%$location%'";
+
+        $result = $db->query($query);
+
+        $items = array();
+
+        foreach($result as $row) {
+            $items [] = new Item(
+                $row['iditem'],
+                //$row['name'],
+                $row['description'],
+                $row['location'],
+                $row['datefound'],
+                $row['finderid'],
+                $row['ownerid']
+            );
+        }
+        return $items;
+    }
+
+    public static function getItemByDate($date)
+    {
+        $db = Database::getDB();
+        $query = "SELECT * FROM item where datefound like '%$date%'";
+
+        $result = $db->query($query);
+
+        $items = array();
+
+        foreach($result as $row) {
+            $items [] = new Item(
+                $row['iditem'],
+                //$row['name'],
+                $row['description'],
+                $row['location'],
+                $row['datefound'],
+                $row['finderid'],
+                $row['ownerid']
+            );
+        }
+        return $items;
+    }
 }

@@ -82,11 +82,11 @@ require_once('Header.php');
                                            placeholder="Item Description" onkeyup="filterResult(this.name)">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="location" class="form-control" required="required" placeholder="Location">
+                                    <input type="text" name="location" class="form-control" required="required" placeholder="Location" onkeyup="filterResult(this.name)">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="date" class="form-control" required="required"
-                                           placeholder="Time Stamp">
+                                    <input type="text" name="date" class="form-control" required="required"
+                                           placeholder="Time Stamp" onkeyup="filterResult(this.name)">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-block btn-lg">Search</button>
