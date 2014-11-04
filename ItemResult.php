@@ -13,6 +13,24 @@ if (isset($_POST['action'])) {
 }
 ?>
 
+<!--<script src="assets/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    var filterResult = function (filter) {
+        $.getJSON("api/item.php?filter="+filter,
+            function (Data) {
+
+                $.each(Data, function (key, val) {
+                    $('<tr class="info">' + '<td>' +
+                        val.iditem + '</td>' +
+                        '<td>' + val.description + '</td>' +
+                        '<td>' + val.datefound + '</td>' + '</tr>'
+                    ).appendTo("#info2");
+                });
+
+            });
+    }
+</script>-->
+
 <div id="theSearch" class="row pad-top-botm wow flipInX animated" data-wow-delay="1.2s">
     <div class="col-lg-8 col-md-8 col-sm-8 ">
         <div class="page-header">
@@ -22,25 +40,14 @@ if (isset($_POST['action'])) {
             <thead>
             <tr>
                 <th>#</th>
-                <th>Item</th>
+                <th>Description</th>
                 <th>Date Logged</th>
             </tr>
             </thead>
             <tbody id="info2">
-            <?php
-            if (isset($_POST['action'])):
-                foreach ($items as $item) : ?>
-                    <tr class="info">
-                        <td><?php echo $item->getIditem(); ?></td>
-                        <td><?php echo $item->getLocation(); ?></td>
-                        <td><?php echo $item->getDatefound(); ?></td>
-                    </tr>
-            <?php
-                endforeach;
-                endif;
-            ?>
             </tbody>
         </table>
+        <ul id="items"/>
     </div>
     <div class="col-lg-4 col-md-4 col-sm-4 text-center">
         <i class="fa fa-lightbulb-o big-icon "></i>
