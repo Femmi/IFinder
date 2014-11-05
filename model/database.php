@@ -3,7 +3,7 @@ class Database {
 
     private static $dsn = 'mysql:host=localhost;dbname=ifinder';
     private static $username = 'root';
-    private static $password = 'testpass';
+    private static $password = '';
     //reference to db connection
     private static $db;
 
@@ -20,7 +20,8 @@ class Database {
                     self::$password);
             } catch (PDOException $e) {
                 $error_message = $e->getMessage();
-                include('../errors/database_error.php');
+                echo $error_message;
+                include('../error/database_error.php');
                 exit();
             }
         }

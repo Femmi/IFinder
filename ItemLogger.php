@@ -6,9 +6,7 @@ require_once('Header.php');
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
-                    <h2 data-wow-delay="0.3s" class="wow rollIn animated animated"
-                        style="visibility: visible; -webkit-animation: rollIn 0.7s;"><strong>LOG ITEM FOUND!</strong>
-                    </h2>
+                    <h2 data-wow-delay="0.3s" class="animated bounceIn"><strong>LOG ITEM FOUND!</strong></h2>
 
                     <p class="sub-head">Students should carefully Log the item they found and leave the item at the
                         closest security post afterwards. Be precise and accurate about the description of the
@@ -16,9 +14,9 @@ require_once('Header.php');
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4">
-                    <div class="div-trans text-center itemlog media wow rotateIn animated animated"
-                         data-wow-delay="0.5s" style="visibility: visible; -webkit-animation: rotateIn 0.5s;">
+                <div class="col-lg-5 col-md-5 col-sm-5">
+                    <div class="div-trans text-center itemlog media wow bounceIn"
+                         data-wow-delay="0.5s" >
                         <h3 id="parag">LOG ITEM</h3>
 
                         <form action="ItemController.php" method="post" id="add_item_form">
@@ -56,14 +54,10 @@ require_once('Header.php');
                         </form>
 
                     </div>
-                </div>
+                </div>               
+                <div class="col-lg-7 col-md-7 col-sm-7" style="padding-top: 130px;">
 
-
-                <div class="col-lg-1 col-md-1"></div>
-                <div class="col-lg-7 col-md-7" style="padding-top: 50px;">
-
-                    <div class="media wow rotateIn animated animated" data-wow-delay="0.7s"
-                         style="visibility: visible; -webkit-animation: rotateIn 0.5s;">
+                    <div class="animated lightSpeedIn" data-wow-delay="0.7s">
                         <div class="pull-left">
                             <i class="fa fa-bell fa-4x  "></i>
                         </div>
@@ -76,8 +70,7 @@ require_once('Header.php');
 
                         </div>
                     </div>
-                    <div class="media wow rotateIn animated animated" data-wow-delay="0.5s"
-                         style="visibility: visible; -webkit-animation: rotateIn 0.6s;">
+                    <div class="animated fadeInLeftBig" data-wow-delay="0.9s">
                         <div class="pull-left">
                             <i class="fa fa-bell fa-4x  "></i>
                         </div>
@@ -91,8 +84,7 @@ require_once('Header.php');
 
                         </div>
                     </div>
-                    <div class="media wow rotateIn animated animated" data-wow-delay="0.6s"
-                         style="visibility: visible; -webkit-animation: rotateIn 0.6s;">
+                    <div class="animated fadeInRightBig" data-wow-delay="0.6s">
                         <div class="pull-left">
                             <i class="fa fa-bell fa-4x  "></i>
                         </div>
