@@ -79,7 +79,7 @@ background-size: cover;
     }
     
     
-    .adminSearch{
+    .adminSrch{
         min-height: 45px;
        
         
@@ -110,3 +110,19 @@ background-size: cover;
     }
     
     
+    .modContent{
+        background-color: black;
+    }
+    
+    .cls{
+        color: red;
+    }
+    #inputDescription{
+        margin-bottom: 15px;
+    }
+    
+    
+    .suggwdi{
+        width: 40%;
+        padding-top: 45px;
+    }

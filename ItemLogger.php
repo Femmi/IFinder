@@ -13,7 +13,8 @@ require_once('adminHeader.php');
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-5 col-md-5 col-sm-5">
+                <div class="col-lg-1 col-md-1 col-sm-1"></div>
+                    <div class="col-lg-5 col-md-5 col-sm-5">
                     <div class="div-trans text-center itemlog media wow bounceIn"
                          data-wow-delay="0.5s" >
                         <h3 id="parag">LOG ITEM</h3>
@@ -54,7 +55,7 @@ require_once('adminHeader.php');
 
                     </div>
                 </div>               
-                <div class="col-lg-7 col-md-7 col-sm-7" style="padding-top: 130px;">
+                <div class="col-lg-6 col-md-6 col-sm-6  suggwdi">
 
                     <div class="animated lightSpeedIn" data-wow-delay="0.7s">
                         <div class="pull-left">
