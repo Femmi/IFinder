@@ -32,4 +32,4 @@
 
 </head>
 <body>
-<?php require_once('Nav.php'); ?>
+<?php require_once('adminNav.php'); ?>

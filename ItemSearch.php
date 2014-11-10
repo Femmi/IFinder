@@ -1,5 +1,5 @@
 <?php
-require_once('Header.php');
+require_once('userHeader.php');
 ?>
 
 <script src="assets/js/jquery-1.10.2.js"></script>

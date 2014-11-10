@@ -14,8 +14,23 @@ if (isset($_POST['action'])) {
 ?>
 
 <div class="row text-center">
-    <h2 data-wow-delay="1.3s" class="row pad-top-botm wow bounceInDown animated"><strong>ADMINISTRATOR's PORTAL</strong></h2>
+    <h2 id="adminline" data-wow-delay="1.3s" class="row pad-top-botm wow bounceInDown animated"><strong>ADMINISTRATOR'S PORTAL</strong></h2>
 </div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 "></div>    
+    <div class="col-lg-4 col-md-4 col-sm-4 wow bounceInDown animated animated" style="padding: 20px; visibility: visible; -webkit-animation: bounceInDown 0.3s;" data-wow-delay="0.3s">
+                        <div class="div-trans text-center media wow rotateIn animated animated animated adminSearch " data-wow-delay="0.5s" style="visibility: visible; -webkit-animation: rotateIn 0.5s 0.5s;">
+                            <form class="formsearch">
+                            <input type="text" class="form-control" placeholder="Search" id="searchInput">
+                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                        </form>  
+                        </div>
+                    </div>
+    
+    <div class="col-lg-4 col-md-4 col-sm-4 "></div>
+        
+    </div>
 <div id="theSearch" class="row pad-top-botm wow flipInX animated" data-wow-delay="1.2s">
     <div class="col-lg-1 col-md-1 col-sm-1" ></div>
     <div class="col-lg-10 animated">

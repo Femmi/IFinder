@@ -1,5 +1,5 @@
 <?php
-require_once('Header.php');
+require_once('adminHeader.php');
 ?>
 <div id="help">
     <div class="overlay">
@@ -8,9 +8,8 @@ require_once('Header.php');
                 <div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2">
                     <h2 data-wow-delay="0.3s" class="animated bounceIn"><strong>LOG ITEM FOUND!</strong></h2>
 
-                    <p class="sub-head">Students should carefully Log the item they found and leave the item at the
-                        closest security post afterwards. Be precise and accurate about the description of the
-                        item. </p>
+                    <p class="sub-head">Carefully log items found, Be precise and accurate about the description of the
+                        item before committing in the database. </p>
                 </div>
             </div>
             <div class="row">

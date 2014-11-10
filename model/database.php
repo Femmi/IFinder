@@ -19,8 +19,7 @@ class Database {
                     self::$username,
                     self::$password);
             } catch (PDOException $e) {
-                $error_message = $e->getMessage();
-                echo $error_message;
+                $error_message = $e->getMessage();                
                 include('../error/database_error.php');
                 exit();
             }

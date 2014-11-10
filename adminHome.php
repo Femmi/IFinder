@@ -1,5 +1,5 @@
 <?php
-require_once('Header.php');
+require_once('adminHeader.php');
 ?>
     <div id="home" >
         <div class="overlay">
