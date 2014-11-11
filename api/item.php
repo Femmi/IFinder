@@ -6,13 +6,14 @@ require_once('../model/item_db.php');
 if (count($_GET) == 0) {
     echo getAllItems();
 } else {
-
     if (isset($_GET['description'])) {
         echo getItemByDescription($_GET['description']);
     } else if (isset($_GET['location'])) {
         echo getItemByLocation($_GET['location']);
     } else if (isset($_GET['date'])) {
         echo getItemByDate($_GET['date']);
+    } else if (isset($_GET['searchBox'])) {
+        echo getFindersNameByItems(ItemDB::getItemByDescription($_GET['searchBox']));
     }
 }
 
@@ -40,6 +41,13 @@ function getItemByLocation($location)
 function getItemByDate($date)
 {
     $items = ItemDB::getItemByDate($date);
+    header('Content-Type: application/json');
+    return json_encode($items);
+}
+
+function getFindersNameByItems($item) {
+    
+    $items = ItemDB::getFindersNameByItems($item);
     header('Content-Type: application/json');
     return json_encode($items);
 }

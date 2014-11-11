@@ -27,15 +27,7 @@ require_once('userHeader.php');
 <div id="about">
     <div class="overlay">
         <div class="container">
-            <!--            <div class="row text-center">
-                            <div
-                                class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-8 col-sm-offset-2 sub-head myInnerRow">
-                                <h2 data-wow-delay="0.3s" class="wow rollIn animated"><strong>FIND YOUR PERSONAL BELONGING</strong>
-                                </h2>
-
-                                <p class="sub-head">The more concise you are the more easy to find your belongings</p>
-                            </div>
-                        </div>-->
+            
             <div class="row ">
                 <div class="col-lg-4 col-md-4">
                     <div class="media wow rotateIn animated" data-wow-delay="0.1s">

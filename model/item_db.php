@@ -2,6 +2,26 @@
 
 class ItemDB
 {
+    
+    public static function getFindersNameByItems($items){
+        $db = Database::getDB();
+        
+        $result = array();
+        
+        foreach($items as $item) {
+            $query = 'select finder.name from finder finder, item item where finder.idfinder = item.finderid and item.iditem = ' . $item->getIditem();
+        
+            $resultdb = $db->query($query);
+
+            $name ='';
+            foreach ($resultdb as $row) {
+                $name = $row['name'];
+            }
+            $result[] = [$name=>$item]  ;
+        }
+        return $result;
+    }
+    
     public static function getItems()
     {
         $db = Database::getDB();

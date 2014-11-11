@@ -1,4 +1,5 @@
 <?php
+/*
 require_once('model/database.php');
 require_once('model/item.php');
 require_once('model/item_db.php');
@@ -10,8 +11,32 @@ if (isset($_POST['action'])) {
     if ($action == "search_item") {
         $items = ItemDB::getItemByDescription($_POST['description']);
     }
-}
+}*/
 ?>
+
+<script src="assets/js/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    var filterResult = function (inputName) {
+        console.log('in filter');
+        var inputValue = $('[name='+inputName+']').filter('input').val();
+        console.log("api/item.php?" + inputName + "=" + inputValue);
+        $.getJSON("api/item.php?" + inputName + "=" + inputValue,
+            function (Data) {
+                $("#info2").empty();
+                $.each(Data, function (key, val) {
+                    $('<tr class="info">' + '<td>' +
+                        val.iditem + '</td>' +
+                        '<td>' + key + '</td>' +
+                        '<td>' + val.description + '</td>' +
+                        '<td>' + val.datefound + '</td>' + 
+                        '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update">Update</a>' +
+                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td></tr>'
+                    ).appendTo("#info2");
+                });
+
+            });
+    }
+</script>
 
 <div class="row text-center">
     <h2 id="adminline" data-wow-delay="1.3s" class="row pad-top-botm wow bounceInDown animated"><strong>ADMINISTRATOR'S PORTAL</strong></h2>
@@ -23,8 +48,8 @@ if (isset($_POST['action'])) {
     <div class="col-lg-4 col-md-4 col-sm-4 wow bounceInDown animated animated" style="padding: 20px; visibility: visible; -webkit-animation: bounceInDown 0.5s;" data-wow-delay="0.3s">
                         <div class="div-trans text-center media wow rotateIn animated animated animated adminSrch " data-wow-delay="0.5s" style="visibility: visible; -webkit-animation: rotateIn 0.5s 0.5s;">
                             
-                            <input type="text" class="form-control" placeholder="Search" id="searchInput">
-                            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button>
+                            <input type="text" class="form-control" placeholder="Search" id="searchInput" name="searchBox" onkeyup="filterResult(this.name)">
+                            <button type="submit" class="btn btn-default" name="search_item"><span class="glyphicon glyphicon-search"></span></button>
                         </div>
                     </div>
                                </form>  
@@ -44,14 +69,13 @@ if (isset($_POST['action'])) {
             <tr>
                 <th>#</th>
                 <th>Finder's Name</th>
-                <th>Item Found</th>
                 <th>Description</th>
                 <th>Date</th>
                 <th></th>
             </tr>            
             </thead>           
             <tbody id="info2">
-                <tr>
+                <tr>    
                     <td>...</td>
                     <td>...</td>
                     <td>...</td>
