@@ -19,16 +19,19 @@ if (isset($_POST['action'])) {
     var filterResult = function (inputName) {
         console.log('in filter');
         var inputValue = $('[name='+inputName+']').filter('input').val();
-        console.log("api/item.php?" + inputName + "=" + inputValue);
         $.getJSON("api/item.php?" + inputName + "=" + inputValue,
             function (Data) {
                 $("#info2").empty();
                 $.each(Data, function (key, val) {
+                    var name;
+                    for(var prop in val) {
+                        name = prop;
+                    }
                     $('<tr class="info">' + '<td>' +
-                        val.iditem + '</td>' +
-                        '<td>' + key + '</td>' +
-                        '<td>' + val.description + '</td>' +
-                        '<td>' + val.datefound + '</td>' + 
+                        val[name].iditem + '</td>' +
+                        '<td>' + name + '</td>' +
+                        '<td>' + val[name].description + '</td>' +
+                        '<td>' + val[name].datefound + '</td>' +
                         '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update">Update</a>' +
                         '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td></tr>'
                     ).appendTo("#info2");
