@@ -3,7 +3,7 @@ class Database {
 
     private static $dsn = 'mysql:host=localhost;dbname=ifinder';
     private static $username = 'root';
-    private static $password = '';
+    private static $password = 'testpass';
     //reference to db connection
     private static $db;
 

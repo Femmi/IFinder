@@ -12,6 +12,9 @@ if (isset($_POST['action'])) {
 if($action == "add_item") {
     addToDB();
     header("Location: ItemLogger.php");
+} else if ($action == "add_item_from_admin") {
+    addToDB();
+    header("Location: Administrator.php");
 }
 
 
