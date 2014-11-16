@@ -38,6 +38,7 @@ if (isset($_POST['action'])) {
                         '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');"><div id="updateButtonText'+val[name].iditem+'">Update</div></a>' +
                         '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td></tr>'
                     ).appendTo("#info2");
+                    $('#administratorportalid').slideUp();
                 });
 
             });
@@ -66,7 +67,7 @@ if (isset($_POST['action'])) {
     }
 </script>
 
-<div class="row text-center">
+<div class="row text-center" id="administratorportalid">
     <h2 id="adminline" data-wow-delay="1.3s" class="row pad-top-botm wow bounceInDown animated"><strong>ADMINISTRATOR'S PORTAL</strong></h2>
 </div>
 
