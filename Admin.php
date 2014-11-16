@@ -35,7 +35,7 @@ if (isset($_POST['action'])) {
                         '<td>' + name + '</td>' +
                         '<td>' + val[name].description + '</td>' +
                         '<td>' + val[name].datefound + '</td>' +
-                        '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');">Update</a>' +
+                        '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');"><div id="updateButtonText'+val[name].iditem+'">Update</div></a>' +
                         '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td></tr>'
                     ).appendTo("#info2");
                 });
@@ -45,10 +45,8 @@ if (isset($_POST['action'])) {
     }
 
     var fillModal = function (row) {
-        console.log(row);
-
-        $('#modalWindowItemForm').trigger('click');
-
+        console.log('#updateButtonText' + row);
+        $('#updateButtonText' + row).text("Loading ...");
         $.getJSON("api/itemfinder.php?itemfinderbyid=" + row,
             function (Data) {
                 $('#idhumberid').val(Data.humberid);
@@ -57,6 +55,8 @@ if (isset($_POST['action'])) {
                 $('#idDescription').val(Data.description);
                 $('#idLocationFound').val(Data.location);
                 $('#idDateFound').val(Data.datefound);
+                $('#modalWindowItemForm').trigger('click');
+                $('#updateButtonText' + row).text("Update");
             });
 
     }
