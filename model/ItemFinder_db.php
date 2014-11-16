@@ -29,4 +29,26 @@ class ItemFinderDB {
             );
         }
     }
+
+    public static function getItemOwnerByIdItem($iditem)
+    {
+        $db = Database::getDB();
+        $query = 'select * from item inner join finder on item.ownerid = finder.idfinder where iditem = ' . $iditem;
+
+        $result = $db->query($query);
+
+        foreach ($result as $row) {
+            return new ItemFinder(
+                $row['iditem'],
+                $row['description'],
+                $row['location'],
+                $row['datefound'],
+                $row['finderid'],
+                $row['ownerid'],
+                $row['humberid'],
+                $row['name'],
+                $row['email']
+            );
+        }
+    }
 }

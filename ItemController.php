@@ -21,6 +21,26 @@ if($action == "add_item") {
         addToDB();
     }
     header("Location: Administrator.php");
+} else if ($action == 'set_owner_from_admin') {
+    setOwner();
+    header("Location: Administrator.php");
+}
+
+function setOwner() {
+    $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
+
+    $idfinder = FinderDB::addOrUpdateFinder($finder);
+
+    $item = new Item(
+        $_POST['itemid'],
+        $_POST['description'],
+        $_POST['location'],
+        $_POST['datefound'],
+        $_POST['finderid'],
+        $idfinder
+    );
+
+    ItemDB::updateItem($item);
 }
 
 

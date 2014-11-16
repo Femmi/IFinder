@@ -36,7 +36,9 @@ if (isset($_POST['action'])) {
                         '<td>' + val[name].description + '</td>' +
                         '<td>' + val[name].datefound + '</td>' +
                         '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');"><div id="updateButtonText'+val[name].iditem+'">Update</div></a>' +
-                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td></tr>'
+                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a>' +
+                        '<a href="#" class="btn btn-info btn-sm" name="assignowner_button" value="assignowner" onclick="setOwner('+val[name].iditem+');">Assign Owner</a>' +
+                        '</td></tr>'
                     ).appendTo("#info2");
                     $('#administratorportalid').slideUp();
                 });
@@ -63,7 +65,27 @@ if (isset($_POST['action'])) {
                 $('#modalWindowItemForm').trigger('click');
                 $('#updateButtonText' + row).text("Update");
             });
+    }
 
+    var setOwner = function(row) {
+        console.log('set owner');
+        $('#updateButtonText' + row).text("Loading ...");
+        $.getJSON("api/itemfinder.php?itemfinderbyid=" + row,
+            function (Data) {
+
+                $('#idaction').val("set_owner_from_admin");
+                $('#iditem').val(row);
+                //$('#idhumberid').val(Data.humberid);
+                //$('#idname').val(Data.name);
+                //$('#idEmailAddress').val(Data.email);
+                $('#idDescription').val(Data.description);
+                $('#idLocationFound').val(Data.location);
+                $('#idDateFound').val(Data.datefound);
+                $('#idfinderid').val(Data.finderid);
+
+                $('#modalWindowItemForm').trigger('click');
+                //$('#updateButtonText' + row).text("Update");
+            });
     }
 </script>
 
@@ -135,7 +157,7 @@ if (isset($_POST['action'])) {
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" action="ItemController.php" method="post" id="add_item_form">
-                    <input type="hidden" name="action" value="add_item_from_admin">
+                    <input type="hidden" name="action" value="add_item_from_admin" id="idaction">
                     <input type="hidden" name="itemid" value="itemid" id="iditem">
                     <input type="hidden" name="finderid" value="finderid" id="idfinderid">
                     <div class="form-group">

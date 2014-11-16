@@ -144,13 +144,25 @@ class ItemDB
         $finderid = $item->getFinderid();
         $ownerid = $item->getOwnerid();
 
-        $query = "update item set
+        echo 'owner id = ' . $ownerid;
+        if ($ownerid == NULL) {
+            $query = "update item set
             description = '" . $description .
-            "', location='" . $location .
-            "', datefound = '" . $datefound .
-            "', finderid = '" . $finderid .
-            "' where iditem = '" . $iditem ."'";
+                "', location='" . $location .
+                "', datefound = '" . $datefound .
+                "', finderid = '" . $finderid .
+                "' where iditem = '" . $iditem . "'";
+        } else {
+            $query = "update item set
+            description = '" . $description .
+                "', location='" . $location .
+                "', datefound = '" . $datefound .
+                "', finderid = '" . $finderid .
+                "', ownerid = '" . $ownerid .
+                "' where iditem = '" . $iditem . "'";
+        }
 
+        echo $query;
         $db->exec($query);
     }
 }
