@@ -133,4 +133,24 @@ class ItemDB
         }
         return $items;
     }
+
+    public static function updateItem($item) {
+        $db = Database::getDB();
+
+        $iditem = $item->getIditem();
+        $description = $item->getDescription();
+        $location = $item->getLocation();
+        $datefound = $item->getDatefound();
+        $finderid = $item->getFinderid();
+        $ownerid = $item->getOwnerid();
+
+        $query = "update item set
+            description = '" . $description .
+            "', location='" . $location .
+            "', datefound = '" . $datefound .
+            "', finderid = '" . $finderid .
+            "' where iditem = '" . $iditem ."'";
+
+        $db->exec($query);
+    }
 }

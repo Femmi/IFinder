@@ -49,12 +49,16 @@ if (isset($_POST['action'])) {
         $('#updateButtonText' + row).text("Loading ...");
         $.getJSON("api/itemfinder.php?itemfinderbyid=" + row,
             function (Data) {
+
+                $('#iditem').val(row);
                 $('#idhumberid').val(Data.humberid);
                 $('#idname').val(Data.name);
                 $('#idEmailAddress').val(Data.email);
                 $('#idDescription').val(Data.description);
                 $('#idLocationFound').val(Data.location);
                 $('#idDateFound').val(Data.datefound);
+                $('#idfinderid').val(Data.finderid);
+
                 $('#modalWindowItemForm').trigger('click');
                 $('#updateButtonText' + row).text("Update");
             });
@@ -130,7 +134,9 @@ if (isset($_POST['action'])) {
             </div>
             <div class="modal-body">
                 <form class="form-horizontal" action="ItemController.php" method="post" id="add_item_form">
-                    <input type="hidden" name="action" value="add_item_from_admin" />
+                    <input type="hidden" name="action" value="add_item_from_admin">
+                    <input type="hidden" name="itemid" value="itemid" id="iditem">
+                    <input type="hidden" name="finderid" value="finderid" id="idfinderid">
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputId">Humber ID</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
@@ -160,14 +166,14 @@ if (isset($_POST['action'])) {
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputLocation">Location Found</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input class="form-control" id="idLocationFound">
+                            <input class="form-control" id="idLocationFound" name="location">
                         </div>
                     </div>
                      <div class="form-group">
-                        <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputDescription">Date</label>
+                        <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="datefound">Date</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input type="date" name="date" class="form-control" required="required"
-                                   placeholder="Time Stamp" id="idDateFound">
+                            <input type="date" name="datefound" class="form-control" required="required"
+                                   placeholder="Time Stamp" id="idDateFound" >
                             <button class="btn btn-success pull-right" type="submit">Save</button>
                         </div>
                     </div>
