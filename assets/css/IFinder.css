@@ -126,3 +126,15 @@ background-size: cover;
         width: 40%;
         padding-top: 45px;
     }
+    
+    
+    #add_item_form small{
+        font-size: 12px;
+        color: red;
+        float: left;
+        padd-left: 20;      
+    }
+    
+    .form-control{
+        color: white;
+    }

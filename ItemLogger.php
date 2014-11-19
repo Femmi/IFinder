@@ -1,6 +1,28 @@
 <?php
+
 require_once('adminHeader.php');
+require_once 'validation/validation.php';
+session_start();
+
+$tempArrayForFields = $tempValidationObject = '';
+
+if(isset($_SESSION['userFields'])){
+    
+    $tempArrayForFields = $_SESSION['userFields'];
+    
+}
+
+if(isset($_SESSION['currentObject'])){   
+    $tempValidationObject = $_SESSION['currentObject'];
+    $invalidObj = $tempValidationObject->getValidText();
+}
+
+
+
+
+
 ?>
+
 <div id="help">
     <div class="overlay">
         <div class="container">
@@ -18,30 +40,33 @@ require_once('adminHeader.php');
                     <div class="div-trans text-center itemlog media wow bounceIn"
                          data-wow-delay="0.5s" >
                         <h3 id="parag">LOG ITEM</h3>
-
                         <form action="ItemController.php" method="post" id="add_item_form">
                             <input type="hidden" name="action" value="add_item" />
                             <div class="col-lg-12 col-md-12 col-sm-12">
+                                <?php if(isset($invalidObj['studentID'])){echo '<p><small>'. $invalidObj['studentID'].'</small></p>';}?>
                                 <div class="form-group">
-                                    <input type="text" name="humberid" class="form-control" required="required" placeholder="Humber ID">
+                                    <input type="text" <?php if(!empty($tempArrayForFields['humberId'])){echo 'value="' .$tempArrayForFields['humberId'] .'"';} ?>name="humberid" class="form-control" required="required" placeholder="Humber ID">
                                 </div>
-
+                                <?php if(isset($invalidObj['name'])){echo '<p><small>'. $invalidObj['name'].'</small></p>';}?>
                                 <div class="form-group">
-                                    <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+                                    <input type="text" <?php if(!empty($tempArrayForFields['name'])){echo 'value="' .$tempArrayForFields['name'] .'"';} ?> name="name" class="form-control" required="required" placeholder="Name">
                                 </div>
+                                <?php if(isset($invalidObj['email'])){echo '<p><small>'. $invalidObj['email'].'</small></p>';}?>
                                 <div class="form-group">
-                                    <input type="text" name="emailaddress" class="form-control" required="required"
+                                    <input type="text" <?php if(!empty($tempArrayForFields['email'])){echo 'value="' .$tempArrayForFields['email'] .'"';} ?>name="emailaddress" class="form-control" required="required"
                                            placeholder="Email Address">
                                 </div>
+                                <?php if(isset($invalidObj['description'])){echo '<p><small>'. $invalidObj['description'].'</small></p>';}?>
                                 <div class="form-group">
-                                    <input type="text" name="description" class="form-control" required="required"
+                                    <input type="text" <?php if(!empty($tempArrayForFields['description'])){echo 'value="' .$tempArrayForFields['description'] .'"';} ?>name="description" class="form-control" required="required"
                                            placeholder="Item Description">
                                 </div>
+                                <?php if(isset($invalidObj['location'])){echo '<p><small>'. $invalidObj['location'].'</small></p>';}?>
                                 <div class="form-group">
-                                    <input type="text" name="location" class="form-control" required="required" placeholder="Location">
+                                    <input type="text" <?php if(!empty($tempArrayForFields['location'])){echo 'value="' .$tempArrayForFields['location']. '"';} ?>name="location" class="form-control" required="required" placeholder="Location">
                                 </div>
                                 <div class="form-group">
-                                    <input type="date" name="date" class="form-control" required="required"
+                                    <input type="date" <?php if(!empty($tempArrayForFields['date'])){echo 'value="' .$tempArrayForFields['date'] .'"';} ?>name="date" class="form-control" required="required"
                                            placeholder="Time Stamp">
                                 </div>
                                 <div class="form-group">
@@ -108,6 +133,22 @@ require_once('adminHeader.php');
 
 </div>
 
-<?php require_once('Footer.php'); ?>
+
+<?php 
+
+if(isset($_SESSION['userFields'])){
+    unset($_SESSION['userFields']);
+}
+if(isset($_SESSION['currentObject'])){
+    unset($_SESSION['currentObject']);
+}
+
+//foreach ($_SESSION['stuff'] as $k => $v) {
+//    if ($v == $removeditem)
+//        unset($_SESSION['stuff'][$k]);
+//}
+
+require_once('Footer.php');
+?>
 
 <!--./ HELP SECTION END -->

@@ -25,7 +25,7 @@ class Item implements JsonSerializable {
         $this->finderid = $finderid;
         $this->ownerid = $ownerid;
     }
-
+    
     /**
      * @param mixed $datefound
      */
