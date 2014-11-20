@@ -9,8 +9,9 @@
 class Validate {
 
     //defined constant, a regexp that checks againts student number
-    const ID_REGULAREXPRESSION = "^n[0-9]{9}$";
-    
+
+    const ID_REGULAREXPRESSION = "/n[0-9]{8}$/";
+
     //defined constant, a regexp that  checks againts name
     const NAME_REGULAR_EXPRESSION = "/^[a-zA-Z ]+$/";
     

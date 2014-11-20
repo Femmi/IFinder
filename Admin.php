@@ -30,9 +30,11 @@ if(empty($invalidObj)){
 <script src="assets/js/jquery-1.10.2.js"></script>
 <script type="text/javascript">
     var filterResult = function (inputName) {
+        console.log(inputName);
         var inputValue = $('[name='+inputName+']').filter('input').val();
         if(inputValue.length == 0) {
             $("#info2").empty();
+            $('#administratorportalid').slideDown();
         } else {
         $.getJSON("api/item.php?" + inputName + "=" + inputValue,
             function (Data) {
