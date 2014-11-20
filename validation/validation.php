@@ -9,7 +9,7 @@
 class Validate {
 
     //defined constant, a regexp that checks againts student number
-    const ID_REGULAREXPRESSION = "/^n[0-9]{9}$/";
+    const ID_REGULAREXPRESSION = "^n[0-9]{9}$";
     
     //defined constant, a regexp that  checks againts name
     const NAME_REGULAR_EXPRESSION = "/^[a-zA-Z ]+$/";
@@ -68,7 +68,7 @@ class Validate {
             
             
             if (!preg_match(self::ID_REGULAREXPRESSION, $param)) {
-                $this->validTextReport['studentID'] = "invalid student ID";
+                $this->validTextReport['studentID'] = "Invalid student ID";
                 return FALSE;
             }  else {
                 return TRUE;
@@ -114,7 +114,7 @@ class Validate {
             //$descriptionMatchStatus = preg_match(self::DESCRIPTION_REGEXP, $param);
             
             if ($descriptionLength < self::DESCRIPTION_DEFAULT_LENGTH) {
-                $this->validTextReport['description'] = "description should be at least 10 characters";
+                $this->validTextReport['description'] = "Description should be at least 10 characters";
                 return FALSE;
             }  else {
                 return TRUE;

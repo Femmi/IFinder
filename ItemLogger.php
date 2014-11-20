@@ -66,7 +66,7 @@ if(isset($_SESSION['currentObject'])){
                                     <input type="text" <?php if(!empty($tempArrayForFields['location'])){echo 'value="' .$tempArrayForFields['location']. '"';} ?>name="location" class="form-control" required="required" placeholder="Location">
                                 </div>
                                 <div class="form-group">
-                                    <input type="date" <?php if(!empty($tempArrayForFields['date'])){echo 'value="' .$tempArrayForFields['date'] .'"';} ?>name="date" class="form-control" required="required"
+                                    <input type="date" <?php if(!empty($tempArrayForFields['date'])){echo 'value="' .$tempArrayForFields['date'] .'"';} ?>name="datefound" class="form-control" required="required"
                                            placeholder="Time Stamp">
                                 </div>
                                 <div class="form-group">
@@ -143,10 +143,8 @@ if(isset($_SESSION['currentObject'])){
     unset($_SESSION['currentObject']);
 }
 
-//foreach ($_SESSION['stuff'] as $k => $v) {
-//    if ($v == $removeditem)
-//        unset($_SESSION['stuff'][$k]);
-//}
+$_SESSION['pagepath'] = $_SERVER['PHP_SELF'];
+
 
 require_once('Footer.php');
 ?>

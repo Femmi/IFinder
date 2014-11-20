@@ -10,7 +10,10 @@ require_once('model/Finder_db.php');
 require_once ('validation/validation.php');
 
 if (isset($_POST['action'])) {
-
+    
+    if (isset($_SESSION['pagepath'])) {
+        $pageAction = $_SESSION['pagepath'];
+    }
 
     $validObject = new Validate();
     
@@ -63,8 +66,8 @@ if (isset($_POST['action'])) {
         }
     }
     
-    if(isset($_POST['date'])){
-        $date = $_POST['date'];
+    if(isset($_POST['datefound'])){
+        $date = $_POST['datefound'];
     }
 }
 
@@ -83,8 +86,14 @@ if (!$idStatus || $discriptionStatus || $locationStatus || $emailStatus || $name
     
     $_SESSION['userFields'] = $tempValueStorage; 
     $_SESSION['currentObject'] = $validObject;
-    header("Location: ItemLogger.php");
     
+    
+    
+    
+    header("Location:". $pageAction);
+    
+    
+   
     
 } else {
 

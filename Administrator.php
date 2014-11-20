@@ -1,5 +1,13 @@
 <?php
+require_once 'validation/validation.php';
+session_start();
+
 require_once('adminHeader.php');
+
+
+
+
+
 ?>
 <div id="about">
     <div class="overlay">
@@ -10,6 +18,16 @@ require_once('adminHeader.php');
     </div>
 </div>
 <?php
+if(isset($_SESSION['userFields'])){
+    unset($_SESSION['userFields']);
+}
+if(isset($_SESSION['currentObject'])){
+    unset($_SESSION['currentObject']);
+}
+
+
+
+
 require_once 'Footer.php';
 ?>
 <!--./ ABOUT SECTION END -->

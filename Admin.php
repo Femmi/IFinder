@@ -1,17 +1,30 @@
 <?php
-/*
-require_once('model/database.php');
-require_once('model/item.php');
-require_once('model/item_db.php');
+//require_once 'validation/validation.php';
 
-$items;
-if (isset($_POST['action'])) {
-    $action = $_POST['action'];
+$tempArrayForFields = $tempValidationObject = '';
 
-    if ($action == "search_item") {
-        $items = ItemDB::getItemByDescription($_POST['description']);
-    }
-}*/
+if (isset($_SESSION['userFields'])) {
+
+    $tempArrayForFields = $_SESSION['userFields'];
+}
+
+if (isset($_SESSION['currentObject'])) {
+    $tempValidationObject = $_SESSION['currentObject'];
+    $invalidObj = $tempValidationObject->getValidText();
+}
+
+//if(!empty($invalidObj)){
+//    
+//    echo  '<script type="text/javascript"> $(window).load(function(){$(\'#mymodal\').modal(\'show\');});</script>';
+//}
+
+
+if(empty($invalidObj)){
+    $mClass = 'modal fade';
+}  else {
+    $mClass = 'modal fade in';
+}
+
 ?>
 
 <script src="assets/js/jquery-1.10.2.js"></script>
@@ -147,7 +160,8 @@ if (isset($_POST['action'])) {
             <a href="#mymodal" class="btn btn-success btn-block btn-sm" data-toggle="modal" id="modalWindowItemForm">Add new Item</a>
         </div>
     </div>
-<div class="modal fade" id="mymodal" role="dialog">
+
+<div class="<?php echo $mClass;?>" id="mymodal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content modContent">
             <div class="modal-header">
@@ -155,49 +169,56 @@ if (isset($_POST['action'])) {
                 <h4 class="modal-title">Add item</h4>
 
             </div>
-            <div class="modal-body">
+            <div class="modal-body" id="modaldiv">
                 <form class="form-horizontal" action="ItemController.php" method="post" id="add_item_form">
                     <input type="hidden" name="action" value="add_item_from_admin" id="idaction">
                     <input type="hidden" name="itemid" value="itemid" id="iditem">
                     <input type="hidden" name="finderid" value="finderid" id="idfinderid">
+                    
+                    <?php if(isset($invalidObj['studentID'])){echo '<p><small>'. $invalidObj['studentID'].'</small></p>';}?>
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputId">Humber ID</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input type="text" name="humberid" class="form-control" required="required" placeholder="Humber ID" id="idhumberid">
+                            <input type="text" name="humberid" <?php if(!empty($tempArrayForFields['humberId'])){echo 'value="' .$tempArrayForFields['humberId'] .'"';} ?> class="form-control" required="required" placeholder="Humber ID" id="idhumberid">
                         </div>
                     </div>
+                    <?php if(isset($invalidObj['name'])){echo '<p><small>'. $invalidObj['name'].'</small></p>';}?>
                      <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputName">Name</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input type="text" name="name" class="form-control" required="required" placeholder="Name" id="idname">
+                            <input type="text" name="name" <?php if(!empty($tempArrayForFields['name'])){echo 'value="' .$tempArrayForFields['name'] .'"';} ?>class="form-control" required="required" placeholder="Name" id="idname">
                         </div>
                     </div>
+                    <?php if(isset($invalidObj['email'])){echo '<p><small>'. $invalidObj['email'].'</small></p>';}?>
                      <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputEmail">Email Address</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input type="text" name="emailaddress" class="form-control" required="required"
+                            <input type="text" name="emailaddress" <?php if(!empty($tempArrayForFields['email'])){echo 'value="' .$tempArrayForFields['email'] .'"';} ?>class="form-control" required="required"
                                    placeholder="Email Address" id="idEmailAddress">
                         </div>
                     </div>
+                    <?php if(isset($invalidObj['description'])){echo '<p><small>'. $invalidObj['description'].'</small></p>';}?>
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputDescription">Item Description</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input type="text" name="description" class="form-control" required="required"
+                            <input type="text" name="description" <?php if(!empty($tempArrayForFields['description'])){echo 'value="' .$tempArrayForFields['description'] .'"';} ?> class="form-control" required="required"
                                    placeholder="Item Description" id="idDescription">
                         </div>
                     </div>
+                    <?php if(isset($invalidObj['location'])){echo '<p><small>'. $invalidObj['location'].'</small></p>';}?>
                     <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="inputLocation">Location Found</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input class="form-control" id="idLocationFound" name="location">
+                            <input class="form-control" id="idLocationFound" <?php if(!empty($tempArrayForFields['location'])){echo 'value="' .$tempArrayForFields['location'] .'"';} ?> placeholder="Location found" name="location">
                         </div>
                     </div>
+                    <?php if(isset($invalidObj['date'])){echo '<p><small>'. $invalidObj['date'].'</small></p>';}?>
                      <div class="form-group">
                         <label class="col-lg-3 col-md-3 col-sm-3 control-label" for="datefound">Date</label>
                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <input type="date" name="datefound" class="form-control" required="required"
+                            <input type="date" name="datefound" <?php if(!empty($tempArrayForFields['date'])){echo 'value="' .$tempArrayForFields['date'] .'"';} ?>class="form-control" required="required"
                                    placeholder="Time Stamp" id="idDateFound" >
-                            <button class="btn btn-success pull-right" type="submit">Save</button>
+                            <button class="btn btn-success pull-right" type="submit" id="mSubmit">Save</button>
                         </div>
                     </div>
 
@@ -206,12 +227,14 @@ if (isset($_POST['action'])) {
             </div>
             <div class="modal-footer">
                  <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
-                <p><small class="text-muted"> Click out of this window or use the cancel button to close this window</small></p>
+<!--                <p><small class="text-muted"> Click out of this window or use the cancel button to close this window</small></p>-->
 
 
             </div>
 
         </div>
-    </div>
+    </div>    
 </div>
+
+<?php $_SESSION['pagepath'] = $_SERVER['PHP_SELF'];?>
     
