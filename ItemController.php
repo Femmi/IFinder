@@ -71,7 +71,7 @@ if (isset($_POST['action'])) {
     }
 }
 
-if (!$idStatus || $discriptionStatus || $locationStatus || $emailStatus || $nameStatus) {
+if (!($idStatus && $discriptionStatus && $locationStatus && $emailStatus && $nameStatus)) {
     
     $tempValueStorage = array();
     $tempValueStorage['humberId'] = $humberId;
@@ -100,7 +100,19 @@ if (!$idStatus || $discriptionStatus || $locationStatus || $emailStatus || $name
 
 
 
+        function addToDB() {
+        //$name = $_POST['name'];
+        $description = $_POST['description'];
+        $location = $_POST['location'];
+        $date = $_POST['datefound'];
 
+        $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
+
+        $idfinder = FinderDB::addOrUpdateFinder($finder);
+
+        $item = new Item(0, $description, $location, $date, $idfinder, NULL);
+        ItemDB::addItem($item);
+    }
 
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
@@ -147,18 +159,6 @@ if (!$idStatus || $discriptionStatus || $locationStatus || $emailStatus || $name
         ItemDB::updateItem($item);
     }
 
-    function addToDB() {
-        //$name = $_POST['name'];
-        $description = $_POST['description'];
-        $location = $_POST['location'];
-        $date = $_POST['date'];
 
-        $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
-
-        $idfinder = FinderDB::addOrUpdateFinder($finder);
-
-        $item = new Item(0, $description, $location, $date, $idfinder, NULL);
-        ItemDB::addItem($item);
-    }
 
 }
