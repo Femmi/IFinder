@@ -4,6 +4,10 @@ session_start();
 
 require_once('adminHeader.php');
 
+if(!isset($_SESSION['login_user']))
+{
+   header("location: adminHome.php");
+}
 
 
 

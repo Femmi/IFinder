@@ -1,5 +1,6 @@
 <?php
 require_once('adminHeader.php');
+include('login.php');
 ?>
     <div id="home" >
         <div class="overlay">
@@ -22,23 +23,27 @@ require_once('adminHeader.php');
                         </span>
 
                     </div>
+                    <form method ="post">
                     <div class="col-lg-3 col-md-3">
                         <div class="div-trans text-center second">
+                            <span><?php echo $error; ?></span>
                             <h3>USER LOGIN</h3>
                             <div class="col-lg-12 col-md-12 col-sm-12" >
                                 <div class="form-group">
-                                    <input type="text" class="form-control" required="required" placeholder="User ID">
+                                    <input type="text" name="username" class="form-control" required="required" placeholder="User ID">
                                            </div>
                                            <div class="form-group">
-                                           <input type="password" class="form-control" required="required" placeholder="Password">
+                                           <input type="password"  name="password" class="form-control" required="required" placeholder="Password">
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-block btn-lg">Log In</button>
+                                   
+                                <input name="submit" type="submit" class="btn btn-success btn-block btn-lg" value="submit" >
                                 </div>
                             </div>
 
                         </div>
                     </div>
+                        </form>
                 </div>
             </div>
         </div>

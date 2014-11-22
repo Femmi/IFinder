@@ -4,6 +4,12 @@ require_once('adminHeader.php');
 require_once 'validation/validation.php';
 session_start();
 
+if(!isset($_SESSION['login_user']))
+{
+   header("location: adminHome.php");
+}
+
+
 $tempArrayForFields = $tempValidationObject = '';
 
 if(isset($_SESSION['userFields'])){

@@ -25,7 +25,7 @@
                                         <a href="#"><span class="glyphicon glyphicon-wrench"></span>Account Settings</a>
                                     </li>                                   
                                     <li>
-                                        <a href="#"><span class="glyphicon glyphicon-off"></span>Sign out</a>
+                                        <a href="logout.php"><span class="glyphicon glyphicon-off"></span>Sign out</a>
                                     </li>
                                 </ul>
                             
