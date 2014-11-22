@@ -165,4 +165,11 @@ class ItemDB
         echo $query;
         $db->exec($query);
     }
+
+    public static function deleteItem($id)
+    {
+        $db = Database::getDB();
+        $query = "DELETE FROM item where iditem = " . $id;
+        $db->exec($query);
+    }
 }

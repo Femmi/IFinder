@@ -23,6 +23,12 @@ if(empty($invalidObj)){
     $mClass = 'modal fade';
 }  else {
     $mClass = 'modal fade in';
+    ?>  <script type="text/javascript">
+        $(document).ready( function() {
+            $('#modalWindowItemForm').trigger('click');
+        });
+
+    </script>  <?php
 }
 
 ?>
@@ -51,7 +57,7 @@ if(empty($invalidObj)){
                         '<td>' + val[name].description + '</td>' +
                         '<td>' + val[name].datefound + '</td>' +
                         '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');"><div id="updateButtonText'+val[name].iditem+'">Update</div></a>' +
-                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a>' +
+                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete" onclick="deleteRow('+val[name].iditem+');">Delete</a>' +
                         '<a href="#" class="btn btn-info btn-sm" name="assignowner_button" value="assignowner" onclick="setOwner('+val[name].iditem+');">Assign Owner</a>' +
                         '</td></tr>'
                     ).appendTo("#info2");
@@ -82,9 +88,14 @@ if(empty($invalidObj)){
             });
     }
 
+    var clearModal = function() {
+        $('input').val("");
+    }
+
+
     var setOwner = function(row) {
         console.log('set owner');
-        $('#updateButtonText' + row).text("Loading ...");
+        //$('#updateButtonText' + row).text("Loading ...");
         $.getJSON("api/itemfinder.php?itemfinderbyid=" + row,
             function (Data) {
 
@@ -100,6 +111,13 @@ if(empty($invalidObj)){
 
                 $('#modalWindowItemForm').trigger('click');
                 //$('#updateButtonText' + row).text("Update");
+            });
+    }
+
+    var deleteRow = function(row) {
+        $.getJSON("api/item.php?delete=" + row,
+            function (Data) {
+                console.log(Data);
             });
     }
 </script>
