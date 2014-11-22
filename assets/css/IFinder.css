@@ -131,8 +131,8 @@ background-size: cover;
     #add_item_form small{
         font-size: 12px;
         color: red;
-        //float: left;
-        //padd-left: 20;      
+        float: left;
+        //padd-left: 20;  
     }
     
     .form-control{
@@ -141,13 +141,23 @@ background-size: cover;
     
     #add_item_form p {
         margin-bottom: 0%;
-        padding-left: 26%;
+        //padding-left: 26%;
     }
     
     #mSubmit{
         margin-top: 10px;
     }
     
-    .modal.in{
+/*    .modal.in{
         display: block;
+    }*/
+
+    #add_item_form1 small{
+        font-size: 12px;
+        color: red;        
+    }
+    
+    #add_item_form1 p {
+        margin-bottom: 0%;
+        padding-left: 26%;
     }

@@ -190,7 +190,7 @@ if(empty($invalidObj)){
 
             </div>
             <div class="modal-body" id="modaldiv">
-                <form class="form-horizontal" action="ItemController.php" method="post" id="add_item_form">
+                <form class="form-horizontal" action="ItemController.php" method="post" id="add_item_form1">
                     <input type="hidden" name="action" value="add_item_from_admin" id="idaction">
                     <input type="hidden" name="itemid" value="itemid" id="iditem">
                     <input type="hidden" name="finderid" value="finderid" id="idfinderid">

@@ -162,8 +162,4 @@ if (!($idStatus && $discriptionStatus && $locationStatus && $emailStatus && $nam
         ItemDB::updateItem($item);
     }
 
-
-
-
-
 }
