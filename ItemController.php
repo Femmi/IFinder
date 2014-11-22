@@ -9,6 +9,41 @@ require_once('model/Finder.php');
 require_once('model/Finder_db.php');
 require_once ('validation/validation.php');
 
+
+function addToDB() {
+    //$name = $_POST['name'];
+    $description = $_POST['description'];
+    $location = $_POST['location'];
+    if(isset($_POST['date'])){
+        $date = $_POST['date'];
+    }
+
+    if(isset($_POST['datefound'])){
+        $date = $_POST['datefound'];
+    }
+
+    $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
+
+    $idfinder = FinderDB::addOrUpdateFinder($finder);
+
+    $item = new Item(0, $description, $location, $date, $idfinder, NULL);
+    ItemDB::addItem($item);
+}
+
+function updateItem() {
+
+    echo 'inupdate';
+
+    $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
+    $idfinder = FinderDB::addOrUpdateFinder($finder);
+
+    $item = new Item(
+        $_POST['itemid'], $_POST['description'], $_POST['location'], $_POST['datefound'], $idfinder, NULL
+    );
+
+    ItemDB::updateItem($item);
+}
+
 if (isset($_POST['action'])) {
     
     if (isset($_SESSION['pagepath'])) {
@@ -96,24 +131,6 @@ if (!($idStatus && $discriptionStatus && $locationStatus && $emailStatus && $nam
    
     
 } else {
-
-
-
-
-        function addToDB() {
-        //$name = $_POST['name'];
-        $description = $_POST['description'];
-        $location = $_POST['location'];
-        $date = $_POST['datefound'];
-
-        $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
-
-        $idfinder = FinderDB::addOrUpdateFinder($finder);
-
-        $item = new Item(0, $description, $location, $date, $idfinder, NULL);
-        ItemDB::addItem($item);
-    }
-
     if (isset($_POST['action'])) {
         $action = $_POST['action'];
     }
@@ -122,7 +139,7 @@ if (!($idStatus && $discriptionStatus && $locationStatus && $emailStatus && $nam
         addToDB();
         header("Location: ItemLogger.php");
     } else if ($action == "add_item_from_admin") {
-        if (isset($_POST['itemid'])) {
+        if (isset($_POST['itemid']) && $_POST['itemid'] != 'itemid') {
             updateItem();
         } else {
             addToDB();
@@ -144,21 +161,5 @@ if (!($idStatus && $discriptionStatus && $locationStatus && $emailStatus && $nam
 
         ItemDB::updateItem($item);
     }
-
-    function updateItem() {
-
-        echo 'inupdate';
-
-        $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
-        $idfinder = FinderDB::addOrUpdateFinder($finder);
-
-        $item = new Item(
-                $_POST['itemid'], $_POST['description'], $_POST['location'], $_POST['datefound'], $idfinder, NULL
-        );
-
-        ItemDB::updateItem($item);
-    }
-
-
 
 }

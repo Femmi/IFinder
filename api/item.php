@@ -14,6 +14,8 @@ if (count($_GET) == 0) {
         echo getItemByDate($_GET['date']);
     } else if (isset($_GET['searchBox'])) {
         echo getFindersNameByItems(ItemDB::getItemByDescription($_GET['searchBox']));
+    } else if (isset($_GET['delete'])) {
+        deleteItem($_GET['delete']);
     }
 }
 
@@ -50,6 +52,10 @@ function getFindersNameByItems($item) {
     $items = ItemDB::getFindersNameByItems($item);
     header('Content-Type: application/json');
     return json_encode($items);
+}
+
+function deleteItem($id) {
+    ItemDB::deleteItem($id);
 }
 
 ?>
