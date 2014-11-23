@@ -7,8 +7,24 @@ require_once('model/item.php');
 require_once('model/item_db.php');
 require_once('model/Finder.php');
 require_once('model/Finder_db.php');
+require_once('model/ItemFinder.php');
+require_once('model/ItemFinder_db.php');
 require_once ('validation/validation.php');
+require_once ('iFinderMail.php');
 
+function setOwner() {
+    $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
+
+    $idfinder = FinderDB::addOrUpdateFinder($finder);
+
+    $item = new Item(
+        $_POST['itemid'], $_POST['description'], $_POST['location'], $_POST['datefound'], $_POST['finderid'], $idfinder
+    );
+
+    ItemDB::updateItem($item);
+    $itemFinder = ItemFinderDB::getItemFinderByIdItem($item->getIditem());
+    iFinderMail::sendMail($itemFinder->getEmail(), $itemFinder->getDescription());
+}
 
 function addToDB() {
     //$name = $_POST['name'];
@@ -150,16 +166,6 @@ if (!($idStatus && $discriptionStatus && $locationStatus && $emailStatus && $nam
         header("Location: Administrator.php");
     }
 
-    function setOwner() {
-        $finder = new Finder(0, $_POST['humberid'], $_POST['name'], $_POST['emailaddress']);
 
-        $idfinder = FinderDB::addOrUpdateFinder($finder);
-
-        $item = new Item(
-                $_POST['itemid'], $_POST['description'], $_POST['location'], $_POST['datefound'], $_POST['finderid'], $idfinder
-        );
-
-        ItemDB::updateItem($item);
-    }
 
 }
