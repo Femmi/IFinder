@@ -148,9 +148,6 @@ background-size: cover;
         margin-top: 10px;
     }
     
-/*    .modal.in{
-        display: block;
-    }*/
 
     #add_item_form1 small{
         font-size: 12px;
@@ -161,3 +158,10 @@ background-size: cover;
         margin-bottom: 0%;
         padding-left: 26%;
     }
+    
+    #administratorportalid{
+        margin-top: 26px;
+    }
+    
+    
+    
