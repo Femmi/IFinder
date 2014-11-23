@@ -31,5 +31,5 @@
     <link href="assets/css/IFinder.css" rel="stylesheet"/>
 
 </head>
-<body>
+<body onload="modalWindowSlideIn()">
 <?php require_once('adminNav.php'); ?>

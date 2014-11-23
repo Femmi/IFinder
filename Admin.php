@@ -19,19 +19,20 @@ if (isset($_SESSION['currentObject'])) {
 //}
 
 
-if(empty($invalidObj)){
-    $mClass = 'modal fade';
-}  else {
-    $mClass = 'modal fade in';
-    ?>  <script type="text/javascript">
+
+
+//if(empty($invalidObj)){
+//    $mClass = 'modal fade';
+//}  else {
+//    $mClass = 'modal fade in';
+    ?> 
+
+<!--<script type="text/javascript">
         $(document).ready( function() {
             $('#modalWindowItemForm').trigger('click');
         });
 
-    </script>  <?php
-}
-
-?>
+    </script>-->
 
 <script src="assets/js/jquery-1.10.2.js"></script>
 <script type="text/javascript">
@@ -56,8 +57,8 @@ if(empty($invalidObj)){
                         '<td>' + name + '</td>' +
                         '<td>' + val[name].description + '</td>' +
                         '<td>' + val[name].datefound + '</td>' +
-                        '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');"><div id="updateButtonText'+val[name].iditem+'">Update</div></a>' +
-                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete" onclick="deleteRow('+val[name].iditem+');">Delete</a>' +
+                        '<td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update" onclick="fillModal('+val[name].iditem+');"><div id="updateButtonText'+val[name].iditem+'">Update</div></a>&nbsp;&nbsp;' +
+                        '<a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete" onclick="deleteRow('+val[name].iditem+');">Delete</a>&nbsp;&nbsp;' +
                         '<a href="#" class="btn btn-info btn-sm" name="assignowner_button" value="assignowner" onclick="setOwner('+val[name].iditem+');">Assign Owner</a>' +
                         '</td></tr>'
                     ).appendTo("#info2");
@@ -122,70 +123,11 @@ if(empty($invalidObj)){
     }
 </script>
 
-<div class="row text-center" id="administratorportalid">
-    <h2 id="adminline" data-wow-delay="1.3s" class="row pad-top-botm wow bounceInDown animated"><strong>ADMINISTRATOR'S PORTAL</strong></h2>
-</div>
-
-<div class="row">
-    <div class="col-lg-4 col-md-4 col-sm-4 "></div>
-    <form class="formsearch">
-    <div class="col-lg-4 col-md-4 col-sm-4 wow bounceInDown animated animated" style="padding: 20px; visibility: visible; -webkit-animation: bounceInDown 0.5s;" data-wow-delay="0.3s">
-                        <div class="div-trans text-center media wow rotateIn animated animated animated adminSrch " data-wow-delay="0.5s" style="visibility: visible; -webkit-animation: rotateIn 0.5s 0.5s;">
-
-                            <input type="text" class="form-control" placeholder="Search" id="searchInput" name="searchBox" onkeyup="filterResult(this.name)">
-                            <button type="submit" class="btn btn-default" name="search_item"><span class="glyphicon glyphicon-search"></span></button>
-                        </div>
-                    </div>
-                               </form>
-
-
-    <div class="col-lg-4 col-md-4 col-sm-4 "></div>
-
-    </div>
-<div id="theSearch" class="row pad-top-botm wow flipInX animated" data-wow-delay="1.2s">
-    <div class="col-lg-1 col-md-1 col-sm-1" ></div>
-    <div class="col-lg-10 animated">
-        <div class="page-header">
-            <h3>Inventory</h3>
-        </div>
-        <table class="table table-striped table-hover ">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Finder's Name</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th></th>
-            </tr>
-            </thead>
-            <tbody id="info2">
-                <tr>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td>...</td>
-                    <td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update">Update</a>
-                    &nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td>
-                </tr>
-
-            </tbody>
-        </table>
-    </div>
-    <div class="col-lg-1 col-md-1 col-sm-1"></div>
-</div>
-<div class="row">
-    <div class="col-lg-1 col-md-1 col-sm-1 "></div>
-        <div class="form-group col-lg-2 col-md-2 col-sm-2 wow bounceInDown animated" >
-            <a href="#mymodal" class="btn btn-success btn-block btn-sm" data-toggle="modal" id="modalWindowItemForm">Add new Item</a>
-        </div>
-    </div>
-
-<div class="<?php echo $mClass;?>" id="mymodal" role="dialog">
+<div class="modal fade" id="mymodal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content modContent">
             <div class="modal-header">
-                <button class="close cls" data-dismiss="modal">&times;</button>
+                <button class="close cls" data-dismiss="modal" onclick="modalWindowSlideOut()">&times;</button>
                 <h4 class="modal-title">Add item</h4>
 
             </div>
@@ -246,7 +188,7 @@ if(empty($invalidObj)){
 
             </div>
             <div class="modal-footer">
-                 <button class="btn btn-danger" data-dismiss="modal" type="button">Cancel</button>
+                <button class="btn btn-danger" data-dismiss="modal" type="button" onclick="modalWindowSlideOut()">Cancel</button>
 <!--                <p><small class="text-muted"> Click out of this window or use the cancel button to close this window</small></p>-->
 
 
@@ -255,6 +197,90 @@ if(empty($invalidObj)){
         </div>
     </div>    
 </div>
+
+<script type="text/javascript">
+    
+    
+    function modalWindowSlideIn(){
+        var php_var = "<?php echo (empty($invalidObj)); ?>";
+        if(!php_var){
+            document.getElementById("mymodal").className = "modal fade in";
+            document.getElementById("mymodal").style.display = "block";
+            document.getElementById("mymodal").setAttribute("aria-hidden","false");
+            
+        }
+    }
+    
+    function modalWindowSlideOut(){
+        document.getElementById("mymodal").style.display = "none";
+        document.getElementById("mymodal").setAttribute("aria-hidden","true");
+        document.getElementById("mymodal").className = "modal fade";        
+    }
+   
+   
+   
+</script>
+
+<div class="row text-center" id="administratorportalid">
+    <h2 id="adminline" data-wow-delay="1.3s" class="row pad-top-botm wow bounceInDown animated"><strong>ADMINISTRATOR'S PORTAL</strong></h2>
+</div>
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 "></div>
+    <form class="formsearch">
+    <div class="col-lg-4 col-md-4 col-sm-4 wow bounceInDown animated animated" style="padding: 20px; visibility: visible; -webkit-animation: bounceInDown 0.5s;" data-wow-delay="0.3s">
+                        <div class="div-trans text-center media wow rotateIn animated animated animated adminSrch " data-wow-delay="0.5s" style="visibility: visible; -webkit-animation: rotateIn 0.5s 0.5s;">
+
+                            <input type="text" class="form-control" placeholder="Search" id="searchInput" name="searchBox" onkeyup="filterResult(this.name)">
+                            <button type="submit" class="btn btn-default" name="search_item"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                               </form>
+
+
+    <div class="col-lg-4 col-md-4 col-sm-4 "></div>
+
+    </div>
+<div id="theSearch" class="row pad-top-botm wow flipInX animated" data-wow-delay="1.2s">
+    <div class="col-lg-1 col-md-1 col-sm-1" ></div>
+    <div class="col-lg-10 animated">
+        <div class="page-header">
+            <h3>Inventory</h3>
+        </div>
+        <table class="table table-striped table-hover ">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Finder's Name</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="info2">
+<!--                <tr>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td>...</td>
+                    <td><a href="#" class="btn btn-success btn-sm" name="update_button" value="update">Update</a>
+                    &nbsp;&nbsp;&nbsp; <a href="#" class="btn btn-danger btn-sm" name="delete_button" value="delete">Delete</a></td>
+                </tr>-->
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-1 col-md-1 col-sm-1"></div>
+</div>
+<div class="row">
+    <div class="col-lg-1 col-md-1 col-sm-1 "></div>
+        <div class="form-group col-lg-2 col-md-2 col-sm-2 wow bounceInDown animated" >
+            <a href="#mymodal" class="btn btn-success btn-block btn-sm" data-toggle="modal" id="modalWindowItemForm">Add new Item</a>
+        </div>
+    </div>
+
+
 
 <?php $_SESSION['pagepath'] = $_SERVER['PHP_SELF'];?>
     
