@@ -43,6 +43,7 @@ if (isset($_SESSION['currentObject'])) {
             $("#info2").empty();
             $('#administratorportalid').slideDown();
         } else {
+            console.log("api/item.php?" + inputName + "=" + inputValue);
         $.getJSON("api/item.php?" + inputName + "=" + inputValue,
             function (Data) {
                 $("#info2").empty();

@@ -5,29 +5,30 @@ require_once('userHeader.php');
 <script src="assets/js/jquery-1.10.2.js"></script>
 <script type="text/javascript">
     var filterResult = function (inputName) {
-        console.log('in filter');
-        var inputValue = $('[name='+inputName+']').filter('input').val();
-        console.log("api/item.php?" + inputName + "=" + inputValue);
-        $.getJSON("api/item.php?" + inputName + "=" + inputValue,
-            function (Data) {
-                console.log('test');
-                $("#info2").empty();
-                $.each(Data, function (key, val) {
-                    $('<tr class="info">' + '<td>' +
-                        val.iditem + '</td>' +
-                        '<td>' + val.description + '</td>' +
-                        '<td>' + val.datefound + '</td>' + '</tr>'
-                    ).appendTo("#info2");
-                });
+        var inputValue = $('[name=' + inputName + ']').filter('input').val();
+        if (inputValue.length == 0) {
+            $("#info2").empty();
+        } else {
+            $.getJSON("api/item.php?" + inputName + "=" + inputValue,
+                function (Data) {
+                    $("#info2").empty();
+                    $.each(Data, function (key, val) {
+                        $('<tr class="info">' + '<td>' +
+                            val.iditem + '</td>' +
+                            '<td>' + val.description + '</td>' +
+                            '<td>' + val.datefound + '</td>' + '</tr>'
+                        ).appendTo("#info2");
+                    });
 
-            });
+                });
+        }
     }
 </script>
 
 <div id="about">
     <div class="overlay">
         <div class="container">
-            
+
             <div class="row ">
                 <div class="col-lg-4 col-md-4">
                     <div class="media wow rotateIn animated" data-wow-delay="0.1s">
@@ -61,7 +62,8 @@ require_once('userHeader.php');
 
                 </div>
                 <form action="" method="post" id="search_item_form">
-                    <input type="hidden" name="action" value="search_item" />
+                    <input type="hidden" name="action" value="search_item"/>
+
                     <div class="col-lg-4 col-md-4 wow bounceInDown animated" style="padding: 10px;"
                          data-wow-delay="0.3s">
                         <div class="div-trans text-center itemlog2 media wow rotateIn animated animated"
@@ -74,7 +76,8 @@ require_once('userHeader.php');
                                            placeholder="Item Description" onkeyup="filterResult(this.name)">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" name="location" class="form-control" required="required" placeholder="Location" onkeyup="filterResult(this.name)">
+                                    <input type="text" name="location" class="form-control" required="required"
+                                           placeholder="Location" onkeyup="filterResult(this.name)">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" name="date" class="form-control" required="required"
